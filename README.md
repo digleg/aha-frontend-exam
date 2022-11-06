@@ -41,9 +41,6 @@ Git Commit style guide, shall refer to [commitlint](https://commitlint.js.org/#/
 width: 1440px height: auto
 
 src
-    fonts
-    interfaces
-    styles
     components
 
         SideBar.tsx
@@ -97,7 +94,8 @@ src
         TagsItem.tsx
 
         BackButton.tsx
-
+    fonts
+    interfaces
     pages
 
         Home.tsx
@@ -107,7 +105,10 @@ src
         Tags.tsx
         // includes: TagsWrapper
         // Add Logo when screen width < 1440px
-
+    redux
+        slices
+        store.ts
+    styles
     App.tsx
     // includes: SideBar, Routing
     // Hide Logo when screen width < 1440px

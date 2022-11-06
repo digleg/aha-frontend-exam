@@ -1,6 +1,8 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
+import axiosInstance, { API_SUB_URL } from '../../utils/axios/index';
+
 export interface CounterState {
   value: number;
 }
@@ -19,6 +21,7 @@ export const counterSlice = createSlice({
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
       state.value += 1;
+      axiosInstance.get(`${API_SUB_URL.USER_ALL}/?page=1&pageSize=10`);
     },
     decrement: (state) => {
       state.value -= 1;
