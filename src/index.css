@@ -137,3 +137,12 @@ q {
   src: local("Open_Sans", sans-serif),
     url(./fonts/Open_Sans/OpenSans-VariableFont_wdth.ttf) format("truetype");
 }
+
+/**
+ * * Settings for Tailwind
+
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
