@@ -107,11 +107,11 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "";
+  content: '';
 }
 blockquote,
 q {
-  quotes: "" "";
+  quotes: '' '';
 }
 
 /**
@@ -120,22 +120,22 @@ q {
 */
 
 @font-face {
-  font-family: "Ubuntu-Bold";
-  src: local("Ubuntu-Bold"),
-    url(./fonts/Ubuntu/Ubuntu-Bold.ttf) format("truetype");
-  font-family: "Ubuntu-Light";
-  src: local("Ubuntu-Light"),
-    url(./fonts/Ubuntu/Ubuntu-Light.ttf) format("truetype");
-  font-family: "Ubuntu-Medium";
-  src: local("Ubuntu-Medium"),
-    url(./fonts/Ubuntu/Ubuntu-Medium.ttf) format("truetype");
-  font-family: "Ubuntu-Regular";
-  src: local("Ubuntu-Regular"),
-    url(./fonts/Ubuntu/Ubuntu-Regular.ttf)
-      url(./fonts/Ubuntu/Ubuntu-Regular.ttf) format("truetype");
-  font-family: "Open Sans";
-  src: local("Open_Sans", sans-serif),
-    url(./fonts/Open_Sans/OpenSans-VariableFont_wdth.ttf) format("truetype");
+  font-family: 'Ubuntu-Bold';
+  src: local('Ubuntu-Bold'),
+    url(../fonts/Ubuntu/Ubuntu-Bold.ttf) format('truetype');
+  font-family: 'Ubuntu-Light';
+  src: local('Ubuntu-Light'),
+    url(../fonts/Ubuntu/Ubuntu-Light.ttf) format('truetype');
+  font-family: 'Ubuntu-Medium';
+  src: local('Ubuntu-Medium'),
+    url(../fonts/Ubuntu/Ubuntu-Medium.ttf) format('truetype');
+  font-family: 'Ubuntu-Regular';
+  src: local('Ubuntu-Regular'),
+    url(../fonts/Ubuntu/Ubuntu-Regular.ttf)
+      url(../fonts/Ubuntu/Ubuntu-Regular.ttf) format('truetype');
+  font-family: 'Open Sans';
+  src: local('Open_Sans', sans-serif),
+    url(../fonts/Open_Sans/OpenSans-VariableFont_wdth.ttf) format('truetype');
 }
 
 /**

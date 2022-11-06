@@ -41,73 +41,76 @@ Git Commit style guide, shall refer to [commitlint](https://commitlint.js.org/#/
 width: 1440px height: auto
 
 src
-font
-components
+    fonts
+    interfaces
+    styles
+    components
 
-    SideBar.tsx
-    // not show width less then 1440px
-    // desktop: height 100%; display: flex; width: 80px;
-    // mobile: height 66px; display: flex; flex-direction: column-reverse; word hidden
+        SideBar.tsx
+        // not show width less then 1440px
+        // desktop: height 100%; display: flex; width: 80px;
+        // mobile: height 66px; display: flex; flex-direction: column-reverse; word hidden
 
-    SearchWrapper.tsx
-    // margin 130px
+        SearchWrapper.tsx
+        // margin 130px
 
-    Logo.tsx
-    // size: 35*15
+        Logo.tsx
+        // size: 35*15
 
-    Input.tsx
-    // width: 100%
+        Input.tsx
+        // width: 100%
 
-    Slider.tsx
-    // width: 100%
+        Slider.tsx
+        // width: 100%
 
-    Button.tsx
+        Button.tsx
 
-    SquaredButton.tsx
-    // width: 343px; height 40px;
-    // Animation: hover
+        SquaredButton.tsx
+        // width: 343px; height 40px;
+        // Animation: hover
 
-    Button.tsx
-    // variable: normal
-    // Following: 76*28
-    // Follow: 60*29
-    // Animation: hover
+        Button.tsx
+        // variable: normal
+        // Following: 76*28
+        // Follow: 60*29
+        // Animation: hover
 
-    Gallery.tsx
-    // infinite scroll
-    GalleryItem.tsx
-    Skeleton.tsx
+        Gallery.tsx
+        // infinite scroll
+        GalleryItem.tsx
+        Skeleton.tsx
 
-    Profile.tsx
-    // Tab - width: 375, height: 100%
-    // no margin
+        Profile.tsx
+        // Tab - width: 375, height: 100%
+        // no margin
 
-    Follow.tsx
-    // margin-left / margin-right: 16px;
+        Follow.tsx
+        // margin-left / margin-right: 16px;
 
-    FollowItem.tsx
-    // margin-bottom: 21px;
-    // justify-content: space-between
-    Button.tsx
-    // variable: outlined & contained
+        FollowItem.tsx
+        // margin-bottom: 21px;
+        // justify-content: space-between
+        Button.tsx
+        // variable: outlined & contained
 
-    TagsWrapper.tsx
-    TagsItem.tsx
+        TagsWrapper.tsx
+        TagsItem.tsx
 
-    BackButton.tsx
+        BackButton.tsx
 
-pages
+    pages
 
-    HomePage.tsx
-    // includes: SearchWrapper, Tabs
-    // SearchWrapper with min-width & center
-    // Add Logo when screen width < 1440px
-    TagsPage.tsx
-    // includes: TagsWrapper
-    // Add Logo when screen width < 1440px
+        Home.tsx
+        // includes: SearchWrapper, Tabs
+        // SearchWrapper with min-width & center
+        // Add Logo when screen width < 1440px
+        Tags.tsx
+        // includes: TagsWrapper
+        // Add Logo when screen width < 1440px
 
-app.tsx
-// includes: SideBar, Routing
-// Hide Logo when screen width < 1440px
-index.tsx
+    App.tsx
+    // includes: SideBar, Routing
+    // Hide Logo when screen width < 1440px
+
+    index.tsx
 ```
