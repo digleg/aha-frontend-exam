@@ -9,6 +9,8 @@
 
 ## Dev Notes
 
+- font family support: Ubuntu@700,500,400,300; Open_Sans@600
+
 ## Commit Rules
 
 Git Commit style guide, shall refer to [commitlint](https://commitlint.js.org/#/)
@@ -39,6 +41,7 @@ Git Commit style guide, shall refer to [commitlint](https://commitlint.js.org/#/
 width: 1440px height: auto
 
 src
+font
 components
 
     SideBar.tsx

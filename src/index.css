@@ -1,5 +1,4 @@
 html,
-body,
 div,
 span,
 applet,
@@ -66,6 +65,20 @@ td {
   font-family: inherit;
   vertical-align: baseline;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  /* Set font family Ubuntu for all body  */
+  font-family: Ubuntu !important;
+}
+
 /* remember to define focus styles! */
 :focus {
   outline: 0;
@@ -99,4 +112,28 @@ q:after {
 blockquote,
 q {
   quotes: "" "";
+}
+
+/**
+ * * Ubuntu font supports Bold: 700, Medium: 500, Regular: 400, Light: 300
+ * * Open Sans supports only: SemiBold: 600
+*/
+
+@font-face {
+  font-family: "Ubuntu-Bold";
+  src: local("Ubuntu-Bold"),
+    url(./fonts/Ubuntu/Ubuntu-Bold.ttf) format("truetype");
+  font-family: "Ubuntu-Light";
+  src: local("Ubuntu-Light"),
+    url(./fonts/Ubuntu/Ubuntu-Light.ttf) format("truetype");
+  font-family: "Ubuntu-Medium";
+  src: local("Ubuntu-Medium"),
+    url(./fonts/Ubuntu/Ubuntu-Medium.ttf) format("truetype");
+  font-family: "Ubuntu-Regular";
+  src: local("Ubuntu-Regular"),
+    url(./fonts/Ubuntu/Ubuntu-Regular.ttf)
+      url(./fonts/Ubuntu/Ubuntu-Regular.ttf) format("truetype");
+  font-family: "Open Sans";
+  src: local("Open_Sans", sans-serif),
+    url(./fonts/Open_Sans/OpenSans-VariableFont_wdth.ttf) format("truetype");
 }
