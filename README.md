@@ -1,15 +1,50 @@
 # aha-frontend-exam
 
+> Please read **Dev Notes** before develop!  
+> Happy Hacking!
+
+## Collaborator
+
+- FE: Vito Huang
+
+## Dev Notes
+
+## Commit Rules
+
+Git Commit style guide, shall refer to [commitlint](https://commitlint.js.org/#/)
+
+- feat: new / edit feature.
+
+- ci: related to CI/CD.
+
+- fix: bug fix.
+
+- docs: documentation.
+
+- style: formatting change, not affecting the coding logic (ex: white-space, formatting, missing semi colons, etc).
+
+- refactor: Neither new feature, nor bug fix.
+
+- perf: A code change that improves performance.
+
+- test: Adding missing tests.
+
+- chore: Add scripts or or add tools.
+
+- revert: revert to a specific version with some reasons.
+
 # Project Structure
 
+```
 width: 1440px height: auto
 
 src
 components
-SideBar.tsx
-// not show width less then 1440px
-// desktop: height 100%; display: flex; width: 80px;
-// mobile: height 66px; display: flex; flex-direction: column-reverse; word hidden
+
+    SideBar.tsx
+    // not show width less then 1440px
+    // desktop: height 100%; display: flex; width: 80px;
+    // mobile: height 66px; display: flex; flex-direction: column-reverse; word hidden
 
     SearchWrapper.tsx
     // margin 130px
@@ -59,12 +94,17 @@ SideBar.tsx
     BackButton.tsx
 
 pages
-HomePage.tsx
-// includes: SearchWrapper, Tabs
-// SearchWrapper with min-width & center
-TagsPage.tsx
-// includes: TagsWrapper
+
+    HomePage.tsx
+    // includes: SearchWrapper, Tabs
+    // SearchWrapper with min-width & center
+    // Add Logo when screen width < 1440px
+    TagsPage.tsx
+    // includes: TagsWrapper
+    // Add Logo when screen width < 1440px
 
 app.tsx
 // includes: SideBar, Routing
+// Hide Logo when screen width < 1440px
 index.tsx
+```
