@@ -119,6 +119,12 @@ q {
  * * Open Sans supports only: SemiBold: 600
 */
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 @font-face {
   font-family: 'Ubuntu-Bold';
   src: local('Ubuntu-Bold'),

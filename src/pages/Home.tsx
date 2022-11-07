@@ -10,7 +10,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className="h-[calc(100vh-66px)]">
       Home Page
       <Link to="/tags">go to tags</Link>
       <button

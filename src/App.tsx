@@ -1,10 +1,9 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import SideBar from './components/SideBar';
 import Home from './pages/Home';
 import Tags from './pages/Tags';
-
-import './styles/App.css';
 
 function App() {
   const router = createBrowserRouter([
@@ -18,7 +17,8 @@ function App() {
     },
   ]);
   return (
-    <div>
+    <div className="min-h-full flex xl:flex-row flex-col-reverse">
+      <SideBar />
       <RouterProvider router={router} />
     </div>
   );
