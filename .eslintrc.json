@@ -21,7 +21,13 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": ["react", "@typescript-eslint", "prettier", "simple-import-sort"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "prettier",
+    "simple-import-sort",
+    "tailwindcss"
+  ],
   "rules": {
     "react/react-in-jsx-scope": ["off"],
     "react/jsx-uses-react": ["off"],
@@ -31,7 +37,13 @@
     // increase the severity of rules so they are auto-fixable
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
-    "no-param-reassign": [2, { "props": false }]
+    "no-param-reassign": [2, { "props": false }],
+    "tailwindcss/classnames-order": "off", // Respect prettier-plugin-tailwindcss order
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { "argsIgnorePattern": "^_" }
+    ],
+    "no-unused-vars": "off"
   },
   "overrides": [
     // override "simple-import-sort" config
@@ -57,7 +69,10 @@
             ]
           }
         ]
-      }
+      },
+      "extends": [
+        "plugin:prettier/recommended" // Make this the last element so prettier config overrides other formatting rules
+      ]
     }
   ]
 }

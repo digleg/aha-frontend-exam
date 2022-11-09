@@ -42,58 +42,57 @@ width: 1440px height: auto
 
 src
     components
+        Common
+            SideBar.tsx
+            // not show width less then 1440px
+            // desktop: height 100%; display: flex; width: 80px;
+            // mobile: height 66px; display: flex; flex-direction: column-reverse; word hidden
 
-        SideBar.tsx
-        // not show width less then 1440px
-        // desktop: height 100%; display: flex; width: 80px;
-        // mobile: height 66px; display: flex; flex-direction: column-reverse; word hidden
+            SideBarItem.tsx
+            // with badge
+            // able to hide & highlights words
 
-        SearchWrapper.tsx
-        // margin 130px
+            Logo.tsx
+            // size: 35*15
 
-        Logo.tsx
-        // size: 35*15
+            BackButton.tsx
+        Home
+            SearchWrapper.tsx
+            // margin 130px
 
-        Input.tsx
-        // width: 100%
+            Input.tsx
+            // width: 100%
 
-        Slider.tsx
-        // width: 100%
+            Slider.tsx
+            // width: 100%
 
-        Button.tsx
+            Button.tsx
+            // variable: normal, outlined, contained
+            // Following: 76*28
+            // Follow: 60*29
+            // Animation: hover
 
-        SquaredButton.tsx
-        // width: 343px; height 40px;
-        // Animation: hover
+            Gallery.tsx
+            // infinite scroll
+            GalleryItem.tsx
+            Skeleton.tsx
 
-        Button.tsx
-        // variable: normal
-        // Following: 76*28
-        // Follow: 60*29
-        // Animation: hover
+            Profile.tsx
+            // Tab - width: 375, height: 100%
+            // no margin
 
-        Gallery.tsx
-        // infinite scroll
-        GalleryItem.tsx
-        Skeleton.tsx
+            Follow.tsx
+            // margin-left / margin-right: 16px;
 
-        Profile.tsx
-        // Tab - width: 375, height: 100%
-        // no margin
+            FollowItem.tsx
+            // margin-bottom: 21px;
+            // justify-content: space-between
+            Button.tsx
+            // variable: outlined & contained
+        Tags
+            TagsWrapper.tsx
+            TagsItem.tsx
 
-        Follow.tsx
-        // margin-left / margin-right: 16px;
-
-        FollowItem.tsx
-        // margin-bottom: 21px;
-        // justify-content: space-between
-        Button.tsx
-        // variable: outlined & contained
-
-        TagsWrapper.tsx
-        TagsItem.tsx
-
-        BackButton.tsx
     fonts
     interfaces
     pages
@@ -114,4 +113,12 @@ src
     // Hide Logo when screen width < 1440px
 
     index.tsx
+```
+
+# Redux Data Structure
+
+```
+
+
+
 ```

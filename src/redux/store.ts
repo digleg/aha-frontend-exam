@@ -1,14 +1,16 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
-import counterReducer from './slices/exampleSlice';
+import homeSlice from './slices/homeSlice';
+
+const reducer = combineReducers({
+  search: homeSlice,
+});
 
 export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
+  reducer,
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+// Inferred type
 export type AppDispatch = typeof store.dispatch;
