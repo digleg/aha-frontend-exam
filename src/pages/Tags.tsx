@@ -6,7 +6,8 @@ import TagsWrapper from '../components/Tags/TagsWrapper';
 const Tags = () => {
   // const navigate = useNavigate();
   return (
-    <div className="h-[calc(100vh-66px)]">
+    <div className="">
+      {/* <div className="h-[calc(100vh-66px)]"> */}
       <TagsWrapper />
       {/* Tags Page
       <Link to="/">go to home</Link> */}

@@ -77,7 +77,7 @@ const SearchWrapper = () => {
               Home Page
             </div>
           </div>
-          <div className="ml-1 mt-[37px] block text-2xl font-normal leading-9 text-white xl:hidden">
+          <div className="ml-1 mt-[37px] flex text-2xl font-normal leading-9 text-white xl:hidden">
             Results
           </div>
         </button>

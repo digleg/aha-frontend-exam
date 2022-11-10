@@ -1,7 +1,10 @@
 /* eslint-disable no-nested-ternary */
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Badge, BadgeProps, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
+
+import { setIsSearch, setResultList } from '../../redux/slices/homeSlice';
 
 interface Props {
   title: string;
@@ -10,6 +13,8 @@ interface Props {
 }
 
 const SideBarItem = ({ title, path, active }: Props) => {
+  const dispatch = useDispatch();
+
   const StyledBadge = styled(Badge)<BadgeProps>(() => ({
     '& .MuiBadge-badge': {
       right: 5,
@@ -26,7 +31,13 @@ const SideBarItem = ({ title, path, active }: Props) => {
 
   return (
     <StyledBadge variant="dot">
-      <Link to={path}>
+      <Link
+        to={path}
+        onClick={() => {
+          dispatch(setIsSearch(false));
+          dispatch(setResultList([]));
+        }}
+      >
         <div className="flex xl:flex-col xl:items-center">
           <IconButton aria-label="SideBarItem">
             <img
