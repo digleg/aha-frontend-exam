@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface GalleryItemProps {
   data: {
     avater: string;
