@@ -12,6 +12,7 @@ module.exports = {
           c6A6A6A: '#6A6A6A',
           c1B1B1B: '#1B1B1B',
           c24242402: 'rgba(24, 24, 24, 0.2)',
+          cB2B2B2: '#B2B2B2',
         },
       },
       height: {

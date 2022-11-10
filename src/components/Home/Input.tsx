@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-import { getKeyword, setKeyword } from '../../redux/slices/homeSlice';
+import { setKeyword } from '../../redux/slices/homeSlice';
 
 const KeywordField = styled(TextField)({
   width: '100%',
@@ -55,10 +55,6 @@ const Input = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setKeyword(event.target.value));
   };
-
-  useEffect(() => {
-    dispatch(getKeyword({}));
-  }, [dispatch, keyword]);
 
   return (
     <div>

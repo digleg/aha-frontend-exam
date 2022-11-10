@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Slider as MuiSlider, SliderProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-import { getResultNumber, setResultNumber } from '../../redux/slices/homeSlice';
+import { setResultNumber } from '../../redux/slices/homeSlice';
 
 const ResultsSlider = styled(MuiSlider)<SliderProps>(() => ({
   '& .MuiSlider-rail': {
@@ -49,10 +48,6 @@ const Slider = () => {
   const dispatch = useDispatch();
   const { resultNumber } = useSelector((state: any) => state.search);
 
-  useEffect(() => {
-    dispatch(getResultNumber({}));
-  }, [dispatch, resultNumber]);
-
   const marks = [
     {
       value: 3,
@@ -84,7 +79,15 @@ const Slider = () => {
     event: Event,
     value: number | number[],
   ) => {
-    dispatch(setResultNumber(value as number));
+    let correctValue;
+
+    // transfer 18 to 50 to correspond with the needs and the UI display
+    if (value === 18) {
+      correctValue = 50;
+    } else {
+      correctValue = value;
+    }
+    dispatch(setResultNumber(correctValue as number));
   };
 
   return (

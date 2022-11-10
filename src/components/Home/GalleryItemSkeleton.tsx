@@ -1,4 +1,3 @@
-import React from 'react';
 import { Skeleton } from '@mui/material';
 
 const GalleryItemSkeleton = () => {
@@ -7,7 +6,7 @@ const GalleryItemSkeleton = () => {
       <div className="hidden xl:block">
         <Skeleton
           sx={{ bgcolor: 'grey.800' }}
-          variant="rectangular"
+          variant="rounded"
           width={219}
           height={146}
         />
@@ -27,7 +26,7 @@ const GalleryItemSkeleton = () => {
       <div className="block xl:hidden">
         <Skeleton
           sx={{ bgcolor: 'grey.800' }}
-          variant="rectangular"
+          variant="rounded"
           width="100%"
           height={222.67}
         />

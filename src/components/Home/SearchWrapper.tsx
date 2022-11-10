@@ -1,8 +1,7 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getResultNumber } from '../../redux/slices/homeSlice';
+import { setIsSearch, setResultList } from '../../redux/slices/homeSlice';
 import BackButton from '../Common/BackButton';
 import Logo from '../Common/Logo';
 
@@ -13,21 +12,14 @@ import GalleryItemSkeleton from './GalleryItemSkeleton';
 import Input from './Input';
 import Slider from './Slider';
 
-const enum VARIABLE {
-  SKELETON_COUNT = 20,
-}
-
 const SearchWrapper = () => {
   const dispatch = useDispatch();
   const { resultNumber, loading, isSearched } = useSelector(
     (state: any) => state.search,
   );
-  useEffect(() => {
-    dispatch(getResultNumber({}));
-  }, [dispatch, resultNumber]);
 
   return !isSearched ? (
-    <div className="flex h-[calc(100vh-66px)] w-full flex-col justify-between bg-bg-c181818 px-[20px] xl:min-h-screen xl:w-[calc(100vw-80px)] xl:px-[130px]">
+    <div className="flex min-h-[calc(100vh-66px)] w-full flex-col justify-between bg-bg-c181818 px-[20px] xl:min-h-screen xl:w-[calc(100vw-80px)] xl:px-[130px]">
       <div className="flex flex-col text-white">
         <div className="flex h-[70px] xl:hidden">
           <Logo />
@@ -47,6 +39,7 @@ const SearchWrapper = () => {
           </div>
           <div className="mt-5 flex items-end">
             <div className="text-5xl font-bold ">
+              {/* Transfer 18 to 50 according to the needs */}
               {resultNumber === 18 ? 50 : resultNumber}
             </div>
             <div className="ml-[10px] text-end text-base font-normal tracking-[0.15px]">
@@ -62,35 +55,46 @@ const SearchWrapper = () => {
         </div>
       </div>
       <div className="mb-6 w-full xl:mb-[87px] xl:w-[343px]">
-        <Button />
+        <Button type="search" />
       </div>
     </div>
   ) : (
     <div className="flex min-h-[calc(100vh-66px)] w-full flex-col justify-between bg-bg-c181818 px-[20px] xl:min-h-screen xl:w-[calc(100vw-80px)] xl:px-[130px]">
       <div>
-        <div className="ml-[25.5px] mt-[17px] flex xl:ml-[31.73px] xl:mt-[92px]">
-          <BackButton />
-          <div className="hidden text-white xl:ml-[31.73px] xl:block xl:text-3xl xl:leading-[45px]">
+        <button
+          type="button"
+          onClick={() => {
+            dispatch(setIsSearch(false));
+            dispatch(setResultList([]));
+          }}
+        >
+          <div className="ml-[0px] mt-[17px] flex items-center xl:ml-[-40px] xl:mt-[92px]">
+            <BackButton />
+            <div className="hidden text-white xl:ml-[20px] xl:block xl:text-3xl xl:leading-[45px]">
+              Results
+            </div>
+            <div className="ml-[19.88px] block text-2xl font-normal leading-9 text-white xl:hidden">
+              Home Page
+            </div>
+          </div>
+          <div className="ml-1 mt-[37px] block text-2xl font-normal leading-9 text-white xl:hidden">
             Results
           </div>
-          <div className="ml-[19.88px] block text-2xl font-normal leading-9 text-white xl:hidden">
-            Home Page
-          </div>
-        </div>
-        <div className="ml-5 mt-[37px] block text-2xl font-normal leading-9 text-white xl:hidden">
-          Results
-        </div>
+        </button>
         <div>
-          {/* {loading?} */}
-          <Gallery />
-          {/* {VARIABLE.SKELETON_COUNT} */}
-          {[...Array(VARIABLE.SKELETON_COUNT)].map((e, i) => (
-            <GalleryItemSkeleton key={i} />
-          ))}
+          <div className="mt-6 xl:flex xl:flex-wrap xl:justify-between">
+            <Gallery />
+            {loading &&
+              [...Array(resultNumber)].map((e, i) => (
+                <div key={i} className="mb-10 xl:mb-[31px]">
+                  <GalleryItemSkeleton />
+                </div>
+              ))}
+          </div>
         </div>
       </div>
       <div className="xl:mb-[87px]w-full mb-6 xl:w-[343px]">
-        <Button />
+        <Button type="more" />
       </div>
     </div>
   );

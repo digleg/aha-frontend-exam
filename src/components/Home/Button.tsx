@@ -4,11 +4,16 @@ import { Button as MuiButton, ButtonProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import {
+  setCurrentPage,
   setIsSearch,
   setLoading,
   setResultList,
 } from '../../redux/slices/homeSlice';
 import instance, { API_SUB_URL } from '../../utils/axios/index';
+
+interface AhaButtonProps {
+  type: string;
+}
 
 const SearchButton = styled(MuiButton)<ButtonProps>(() => ({
   fontFamily: 'Ubuntu',
@@ -26,33 +31,59 @@ const SearchButton = styled(MuiButton)<ButtonProps>(() => ({
   },
 }));
 
-const Button = () => {
-  const { keyword } = useSelector((state: any) => state.search);
-  const { resultNumber } = useSelector((state: any) => state.search);
+const Button = ({ type }: AhaButtonProps) => {
+  const { keyword, resultNumber, currentPage, resultList } = useSelector(
+    (state: any) => state.search,
+  );
   const dispatch = useDispatch();
+
+  /**
+   * * Decide which function should be called by type
+   * * For the purpose of every button in this project
+   * * @param: search {string} | more {string}
+   */
+  let onClickFunction;
+  switch (type) {
+    case 'search':
+      onClickFunction = function click() {
+        dispatch(setLoading(true));
+        dispatch(setIsSearch(true));
+        dispatch(setCurrentPage(1));
+        instance
+          .get(
+            `${API_SUB_URL.USER_ALL}?/page=1&pageSize=${resultNumber}&keyword=${keyword}`,
+          )
+          .then((resp) => {
+            dispatch(setResultList(resp.data.data));
+            dispatch(setLoading(false));
+          });
+      };
+      break;
+    case 'more':
+      onClickFunction = function click() {
+        dispatch(setLoading(true));
+        // dispatch(setIsSearch(true));
+        instance
+          .get(
+            `${API_SUB_URL.USER_ALL}?/page=${
+              currentPage + 1
+            }&pageSize=${resultNumber}&keyword=${keyword}`,
+          )
+          .then((resp) => {
+            dispatch(setResultList(resultList.concat(resp.data.data)));
+            dispatch(setLoading(false));
+          });
+      };
+      break;
+
+    default:
+      break;
+  }
 
   return (
     <div>
-      <SearchButton
-        onClick={() => {
-          dispatch(setLoading(true));
-          dispatch(setIsSearch(true));
-          instance
-            .get(
-              `${API_SUB_URL.USER_ALL}?/page=1&pageSize=${resultNumber}&keyword=${keyword}`,
-            )
-            .then((resp) => {
-              console.log(
-                '🚀 ~ file: Button.tsx ~ line 36 ~ .then ~ resp',
-                resp.data.data,
-              );
-              dispatch(setResultList(resp.data.data));
-              dispatch(setLoading(false));
-            });
-        }}
-        variant="contained"
-      >
-        SEARCH
+      <SearchButton onClick={onClickFunction} variant="contained">
+        {type.toUpperCase()}
       </SearchButton>
     </div>
   );
