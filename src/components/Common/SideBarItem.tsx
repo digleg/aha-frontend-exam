@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+import { Link } from 'react-router-dom';
 import { Badge, BadgeProps, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
@@ -13,13 +15,18 @@ const SideBarItem = ({ title, path, active }: Props) => {
       right: 5,
       top: 6,
       backgroundColor: '#00D1FF',
-      display: !active ? 'block' : 'none',
+      display: 'none',
+    },
+    '@media screen and (min-width: 1440px)': {
+      '& .MuiBadge-badge': {
+        display: !active ? 'block' : 'none',
+      },
     },
   }));
 
   return (
     <StyledBadge variant="dot">
-      <a href={path}>
+      <Link to={path}>
         <div className="flex xl:flex-col xl:items-center">
           <IconButton aria-label="SideBarItem">
             <img
@@ -35,7 +42,7 @@ const SideBarItem = ({ title, path, active }: Props) => {
             </div>
           )}
         </div>
-      </a>
+      </Link>
     </StyledBadge>
   );
 };
