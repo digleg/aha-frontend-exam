@@ -38,7 +38,9 @@ function TabPanel(props: TabPanelProps) {
 
 const Profile = () => {
   const [follower, setFollower] = useState([]);
+  const [followerCurrentPage, setFollowerCurrentPage] = useState(1);
   const [following, setFollowing] = useState([]);
+  const [followingCurrentPage, setFollowingCurrentPage] = useState(1);
   const [value, setValue] = React.useState(0);
   const dispatch = useDispatch();
   const { followLoading } = useSelector((state: any) => state.search);
@@ -133,6 +135,35 @@ const Profile = () => {
     },
   }));
 
+  const handleFollowerScroll = (event: any) => {
+    const CURRENT_SCROLL_TRIGGER_HEIGHT = 1030 * followerCurrentPage;
+    if (event.currentTarget.scrollTop >= CURRENT_SCROLL_TRIGGER_HEIGHT) {
+      setFollowerCurrentPage(followerCurrentPage + 1);
+      instance
+        .get(
+          `${API_SUB_URL.USER_ALL}?/?page=${followerCurrentPage}&pageSize=30`,
+        )
+        .then((resp) => {
+          const concatFollowList = follower.concat(resp.data.data);
+          setFollower(concatFollowList);
+        });
+    }
+  };
+  const handleFollowingScroll = (event: any) => {
+    const CURRENT_SCROLL_TRIGGER_HEIGHT = 1030 * followingCurrentPage;
+    if (event.currentTarget.scrollTop >= CURRENT_SCROLL_TRIGGER_HEIGHT) {
+      setFollowingCurrentPage(followingCurrentPage + 1);
+      instance
+        .get(
+          `${API_SUB_URL.USER_FRIENDS}?/?page=${followingCurrentPage}&pageSize=30`,
+        )
+        .then((resp) => {
+          const concatFollowList = following.concat(resp.data.data);
+          setFollowing(concatFollowList);
+        });
+    }
+  };
+
   return (
     <div className="hidden w-[375px] min-w-[375px] bg-bg-c1B1B1B xl:flex">
       <div>
@@ -145,7 +176,10 @@ const Profile = () => {
           <StyledTab label="Following" />
         </StyledTabs>
         <TabPanel value={value} index={0}>
-          <div className="max-h-[800px] overflow-y-scroll">
+          <div
+            className="max-h-[800px] overflow-y-scroll"
+            onScroll={handleFollowerScroll}
+          >
             {followLoading &&
               [...Array(VARIABLE.FOLLOW_COUNT)].map((e, i) => (
                 <div key={i} className="mb-4">
@@ -160,7 +194,10 @@ const Profile = () => {
           </div>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <div className="max-h-[800px] overflow-y-scroll">
+          <div
+            className="max-h-[800px] overflow-y-scroll"
+            onScroll={handleFollowingScroll}
+          >
             {followLoading &&
               [...Array(VARIABLE.FOLLOW_COUNT)].map((e, i) => (
                 <div key={i} className="mb-4">
