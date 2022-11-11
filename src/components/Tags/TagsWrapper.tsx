@@ -1,10 +1,12 @@
 /* eslint-disable react/no-array-index-key */
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import { setLoading } from '../../redux/slices/homeSlice';
-import instance, { API_SUB_URL } from '../../utils/axios';
+import { useAppSelector } from '../../hook/useAppRedux';
+import { TagState } from '../../interfaces/I_tags';
+import { setLoading } from '../../redux/slices/commonSlice';
+import axiosIntance, { API_SUB_URL } from '../../utils/axios';
 import BackButton from '../Common/BackButton';
 
 import TagsItem from './TagsItem';
@@ -15,13 +17,13 @@ const enum VARIABLE {
 }
 
 const TagsWrapper = () => {
-  const [tagsList, setTagsList] = useState<string[]>([]);
+  const [tagsList, setTagsList] = useState([]);
   const dispatch = useDispatch();
-  const { loading } = useSelector((state: any) => state.search);
+  const { loading } = useAppSelector((state) => state.common);
 
   useEffect(() => {
     dispatch(setLoading(true));
-    instance.get(API_SUB_URL.TAGS).then((resp) => {
+    axiosIntance.get(API_SUB_URL.TAGS).then((resp) => {
       setTagsList(resp.data);
       dispatch(setLoading(false));
     });
@@ -45,9 +47,9 @@ const TagsWrapper = () => {
         Tags
       </div>
       <div className="mt-6 flex flex-wrap justify-between">
-        {tagsList.map((item: any) => (
-          <div key={item.id} className="mb-6 xl:mb-9">
-            <TagsItem data={item} />
+        {tagsList.map((tagsItem: TagState, i: number) => (
+          <div key={i} className="mb-6 xl:mb-9">
+            <TagsItem data={tagsItem} />
           </div>
         ))}
         {/* This is the hidden block for the alignment if the tags item aren't divisible by 5 */}

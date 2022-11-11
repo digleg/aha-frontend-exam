@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
+import commonSlice from './slices/commonSlice';
 import homeSlice from './slices/homeSlice';
 
 const reducer = combineReducers({
+  common: commonSlice,
   search: homeSlice,
 });
 

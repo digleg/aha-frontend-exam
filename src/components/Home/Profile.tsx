@@ -1,10 +1,12 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { UIEvent, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { styled, Tab, Tabs, Typography } from '@mui/material';
 
+import { useAppSelector } from '../../hook/useAppRedux';
+import { FollowState } from '../../interfaces/I_home';
 import { setFollowLoading } from '../../redux/slices/homeSlice';
-import instance, { API_SUB_URL } from '../../utils/axios';
+import axiosIntance, { API_SUB_URL } from '../../utils/axios';
 
 import FollowItem from './FollowItem';
 import FollowItemSkeleton from './FollowItemSkeleton';
@@ -43,7 +45,7 @@ const Profile = () => {
   const [followingCurrentPage, setFollowingCurrentPage] = useState(1);
   const [value, setValue] = React.useState(0);
   const dispatch = useDispatch();
-  const { followLoading } = useSelector((state: any) => state.search);
+  const { followLoading } = useAppSelector((state) => state.search);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -51,12 +53,12 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(setFollowLoading(true));
-    instance
+    axiosIntance
       .get(`${API_SUB_URL.USER_ALL}?/?page=1&pageSize=30`)
       .then((resp) => {
         setFollower(resp.data.data);
       });
-    instance
+    axiosIntance
       .get(`${API_SUB_URL.USER_FRIENDS}?/?page=1&pageSize=30`)
       .then((resp) => {
         setFollowing(resp.data.data);
@@ -135,11 +137,11 @@ const Profile = () => {
     },
   }));
 
-  const handleFollowerScroll = (event: any) => {
+  const handleFollowerScroll = (event: UIEvent<HTMLDivElement>) => {
     const CURRENT_SCROLL_TRIGGER_HEIGHT = 1030 * followerCurrentPage;
     if (event.currentTarget.scrollTop >= CURRENT_SCROLL_TRIGGER_HEIGHT) {
       setFollowerCurrentPage(followerCurrentPage + 1);
-      instance
+      axiosIntance
         .get(
           `${API_SUB_URL.USER_ALL}?/?page=${followerCurrentPage}&pageSize=30`,
         )
@@ -149,11 +151,11 @@ const Profile = () => {
         });
     }
   };
-  const handleFollowingScroll = (event: any) => {
+  const handleFollowingScroll = (event: UIEvent<HTMLDivElement>) => {
     const CURRENT_SCROLL_TRIGGER_HEIGHT = 1030 * followingCurrentPage;
     if (event.currentTarget.scrollTop >= CURRENT_SCROLL_TRIGGER_HEIGHT) {
       setFollowingCurrentPage(followingCurrentPage + 1);
-      instance
+      axiosIntance
         .get(
           `${API_SUB_URL.USER_FRIENDS}?/?page=${followingCurrentPage}&pageSize=30`,
         )
@@ -186,8 +188,8 @@ const Profile = () => {
                   <FollowItemSkeleton />
                 </div>
               ))}
-            {follower.map((followersItem: any) => (
-              <div className="mb-4">
+            {follower.map((followersItem: FollowState, i: number) => (
+              <div className="mb-4" key={i}>
                 <FollowItem data={followersItem} />
               </div>
             ))}
@@ -204,8 +206,8 @@ const Profile = () => {
                   <FollowItemSkeleton />
                 </div>
               ))}
-            {following.map((followersItem: any) => (
-              <div className="mb-4">
+            {following.map((followersItem: FollowState, i: number) => (
+              <div className="mb-4" key={i}>
                 <FollowItem data={followersItem} />
               </div>
             ))}

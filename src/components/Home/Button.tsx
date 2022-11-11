@@ -1,15 +1,15 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button as MuiButton, ButtonProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+import { useAppSelector } from '../../hook/useAppRedux';
+import { setLoading } from '../../redux/slices/commonSlice';
 import {
   setCurrentPage,
   setIsSearch,
-  setLoading,
   setResultList,
 } from '../../redux/slices/homeSlice';
-import instance, { API_SUB_URL } from '../../utils/axios/index';
+import axiosIntance, { API_SUB_URL } from '../../utils/axios/index';
 
 interface AhaButtonProps {
   type: string;
@@ -32,8 +32,8 @@ const SearchButton = styled(MuiButton)<ButtonProps>(() => ({
 }));
 
 const Button = ({ type }: AhaButtonProps) => {
-  const { keyword, resultNumber, currentPage, resultList } = useSelector(
-    (state: any) => state.search,
+  const { keyword, resultNumber, currentPage, resultList } = useAppSelector(
+    (state) => state.search,
   );
   const dispatch = useDispatch();
 
@@ -49,7 +49,7 @@ const Button = ({ type }: AhaButtonProps) => {
         dispatch(setLoading(true));
         dispatch(setIsSearch(true));
         dispatch(setCurrentPage(1));
-        instance
+        axiosIntance
           .get(
             `${API_SUB_URL.USER_ALL}?/page=1&pageSize=${resultNumber}&keyword=${keyword}`,
           )
@@ -62,15 +62,14 @@ const Button = ({ type }: AhaButtonProps) => {
     case 'more':
       onClickFunction = function click() {
         dispatch(setLoading(true));
-        // dispatch(setIsSearch(true));
-        instance
+        axiosIntance
           .get(
             `${API_SUB_URL.USER_ALL}?/page=${
               currentPage + 1
             }&pageSize=${resultNumber}&keyword=${keyword}`,
           )
           .then((resp) => {
-            dispatch(setResultList(resultList.concat(resp.data.data)));
+            dispatch(setResultList(resultList.concat(...resp.data.data)));
             dispatch(setLoading(false));
           });
       };

@@ -1,21 +1,12 @@
 // import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export interface SearchState {
-  keyword: string;
-  resultNumber: number;
-  resultList: [];
-  loading: boolean;
-  followLoading: boolean;
-  isSearched: boolean;
-  currentPage: number;
-}
+import { SearchResultListProps, SearchState } from '../../interfaces/I_home';
 
 const initialState: SearchState = {
   keyword: '',
   resultNumber: 15,
   resultList: [],
-  loading: false,
   followLoading: false,
   isSearched: false,
   currentPage: 1,
@@ -33,17 +24,13 @@ export const searchSlice = createSlice({
       ...state,
       resultNumber: action.payload,
     }),
-    setResultList: (state, action: PayloadAction<[]>) => ({
+    setResultList: (state, action: PayloadAction<SearchResultListProps[]>) => ({
       ...state,
       resultList: action.payload,
     }),
-    setLoading: (state, action: PayloadAction<boolean>) => ({
-      ...state,
-      loading: action.payload,
-    }),
     setFollowLoading: (state, action: PayloadAction<boolean>) => ({
       ...state,
-      loading: action.payload,
+      followLoading: action.payload,
     }),
     setIsSearch: (state, action: PayloadAction<boolean>) => ({
       ...state,
@@ -61,7 +48,6 @@ export const {
   setKeyword,
   setResultNumber,
   setResultList,
-  setLoading,
   setIsSearch,
   setCurrentPage,
   setFollowLoading,

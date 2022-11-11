@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
+import { useAppSelector } from '../../hook/useAppRedux';
 import { setIsSearch, setResultList } from '../../redux/slices/homeSlice';
 import BackButton from '../Common/BackButton';
 import Logo from '../Common/Logo';
@@ -14,9 +15,8 @@ import Slider from './Slider';
 
 const SearchWrapper = () => {
   const dispatch = useDispatch();
-  const { resultNumber, loading, isSearched } = useSelector(
-    (state: any) => state.search,
-  );
+  const { resultNumber, isSearched } = useAppSelector((state) => state.search);
+  const { loading } = useAppSelector((state) => state.common);
 
   return !isSearched ? (
     <div className="flex min-h-[calc(100vh-66px)] w-full flex-col justify-between bg-bg-c181818 px-[20px] xl:min-h-screen xl:w-[calc(100vw-80px)] xl:px-[130px]">

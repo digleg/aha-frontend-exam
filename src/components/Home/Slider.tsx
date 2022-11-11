@@ -1,7 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Slider as MuiSlider, SliderProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+import { useAppSelector } from '../../hook/useAppRedux';
 import { setResultNumber } from '../../redux/slices/homeSlice';
 
 const ResultsSlider = styled(MuiSlider)<SliderProps>(() => ({
@@ -46,7 +47,7 @@ const ResultsSlider = styled(MuiSlider)<SliderProps>(() => ({
 
 const Slider = () => {
   const dispatch = useDispatch();
-  const { resultNumber } = useSelector((state: any) => state.search);
+  const { resultNumber } = useAppSelector((state) => state.search);
 
   const marks = [
     {

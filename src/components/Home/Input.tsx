@@ -1,8 +1,9 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+import { useAppSelector } from '../../hook/useAppRedux';
 import { setKeyword } from '../../redux/slices/homeSlice';
 
 const KeywordField = styled(TextField)({
@@ -51,7 +52,7 @@ const KeywordField = styled(TextField)({
 
 const Input = () => {
   const dispatch = useDispatch();
-  const { keyword } = useSelector((state: any) => state.search);
+  const { keyword } = useAppSelector((state) => state.search);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setKeyword(event.target.value));
   };
