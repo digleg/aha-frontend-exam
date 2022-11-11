@@ -8,11 +8,11 @@ export const API_SUB_URL = {
   TAGS: '/tags',
 };
 
-const axiosIntance = axios.create({
+const axiosInstance = axios.create({
   baseURL: AHA_URL,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-export default axiosIntance;
+export default axiosInstance;

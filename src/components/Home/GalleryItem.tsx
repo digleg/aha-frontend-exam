@@ -35,7 +35,7 @@ const GalleryItem = ({ data }: GalleryItemProps) => {
         {name}
       </div>
       <div className="text-[11.175px] font-normal leading-[17px] tracking-[0.3725px] text-[#B2B2B2]">
-        {username}
+        by {username}
       </div>
     </div>
   );

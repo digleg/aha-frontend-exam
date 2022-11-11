@@ -6,7 +6,7 @@ import { styled, Tab, Tabs, Typography } from '@mui/material';
 import { useAppSelector } from '../../hook/useAppRedux';
 import { FollowState } from '../../interfaces/I_home';
 import { setFollowLoading } from '../../redux/slices/homeSlice';
-import axiosIntance, { API_SUB_URL } from '../../utils/axios';
+import axiosInstance, { API_SUB_URL } from '../../utils/axios';
 
 import FollowItem from './FollowItem';
 import FollowItemSkeleton from './FollowItemSkeleton';
@@ -53,12 +53,12 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(setFollowLoading(true));
-    axiosIntance
+    axiosInstance
       .get(`${API_SUB_URL.USER_ALL}?/?page=1&pageSize=30`)
       .then((resp) => {
         setFollower(resp.data.data);
       });
-    axiosIntance
+    axiosInstance
       .get(`${API_SUB_URL.USER_FRIENDS}?/?page=1&pageSize=30`)
       .then((resp) => {
         setFollowing(resp.data.data);
@@ -141,7 +141,7 @@ const Profile = () => {
     const CURRENT_SCROLL_TRIGGER_HEIGHT = 1030 * followerCurrentPage;
     if (event.currentTarget.scrollTop >= CURRENT_SCROLL_TRIGGER_HEIGHT) {
       setFollowerCurrentPage(followerCurrentPage + 1);
-      axiosIntance
+      axiosInstance
         .get(
           `${API_SUB_URL.USER_ALL}?/?page=${followerCurrentPage}&pageSize=30`,
         )
@@ -155,7 +155,7 @@ const Profile = () => {
     const CURRENT_SCROLL_TRIGGER_HEIGHT = 1030 * followingCurrentPage;
     if (event.currentTarget.scrollTop >= CURRENT_SCROLL_TRIGGER_HEIGHT) {
       setFollowingCurrentPage(followingCurrentPage + 1);
-      axiosIntance
+      axiosInstance
         .get(
           `${API_SUB_URL.USER_FRIENDS}?/?page=${followingCurrentPage}&pageSize=30`,
         )

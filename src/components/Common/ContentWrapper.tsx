@@ -1,7 +1,5 @@
 import Sidebar from './SideBar';
 
-// Get context
-
 interface WrapperProps {
   children: JSX.Element[] | JSX.Element;
 }

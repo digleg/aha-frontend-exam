@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { useAppSelector } from '../../hook/useAppRedux';
 import { TagState } from '../../interfaces/I_tags';
 import { setLoading } from '../../redux/slices/commonSlice';
-import axiosIntance, { API_SUB_URL } from '../../utils/axios';
+import axiosInstance, { API_SUB_URL } from '../../utils/axios';
 import BackButton from '../Common/BackButton';
 
 import TagsItem from './TagsItem';
@@ -23,7 +23,7 @@ const TagsWrapper = () => {
 
   useEffect(() => {
     dispatch(setLoading(true));
-    axiosIntance.get(API_SUB_URL.TAGS).then((resp) => {
+    axiosInstance.get(API_SUB_URL.TAGS).then((resp) => {
       setTagsList(resp.data);
       dispatch(setLoading(false));
     });

@@ -1,6 +1,4 @@
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
-
 import { useAppSelector } from '../../hook/useAppRedux';
 import { SearchResultListProps } from '../../interfaces/I_home';
 

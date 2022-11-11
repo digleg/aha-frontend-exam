@@ -37,7 +37,7 @@ const FollowItem = ({ data }: FollowItemProps) => {
             {name}
           </div>
           <div className="text-sm font-normal leading-[21px] text-[#B2B2B2]">
-            {username}
+            @{username}
           </div>
         </div>
       </div>

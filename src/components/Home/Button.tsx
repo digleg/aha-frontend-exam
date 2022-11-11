@@ -9,7 +9,7 @@ import {
   setIsSearch,
   setResultList,
 } from '../../redux/slices/homeSlice';
-import axiosIntance, { API_SUB_URL } from '../../utils/axios/index';
+import axiosInstance, { API_SUB_URL } from '../../utils/axios/index';
 
 interface AhaButtonProps {
   type: string;
@@ -49,7 +49,7 @@ const Button = ({ type }: AhaButtonProps) => {
         dispatch(setLoading(true));
         dispatch(setIsSearch(true));
         dispatch(setCurrentPage(1));
-        axiosIntance
+        axiosInstance
           .get(
             `${API_SUB_URL.USER_ALL}?/page=1&pageSize=${resultNumber}&keyword=${keyword}`,
           )
@@ -62,7 +62,7 @@ const Button = ({ type }: AhaButtonProps) => {
     case 'more':
       onClickFunction = function click() {
         dispatch(setLoading(true));
-        axiosIntance
+        axiosInstance
           .get(
             `${API_SUB_URL.USER_ALL}?/page=${
               currentPage + 1
