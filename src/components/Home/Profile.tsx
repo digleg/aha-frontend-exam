@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { styled, Tab, Tabs, Typography } from '@mui/material';
 
-import { setLoading } from '../../redux/slices/homeSlice';
+import { setFollowLoading } from '../../redux/slices/homeSlice';
 import instance, { API_SUB_URL } from '../../utils/axios';
 
 import FollowItem from './FollowItem';
@@ -41,25 +41,25 @@ const Profile = () => {
   const [following, setFollowing] = useState([]);
   const [value, setValue] = React.useState(0);
   const dispatch = useDispatch();
-  const { loading } = useSelector((state: any) => state.search);
+  const { followLoading } = useSelector((state: any) => state.search);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
   useEffect(() => {
-    dispatch(setLoading(true));
+    dispatch(setFollowLoading(true));
     instance
-      .get(`${API_SUB_URL.USER_ALL}?/?page=1&pageSize=20`)
+      .get(`${API_SUB_URL.USER_ALL}?/?page=1&pageSize=30`)
       .then((resp) => {
         setFollower(resp.data.data);
       });
     instance
-      .get(`${API_SUB_URL.USER_FRIENDS}?/?page=1&pageSize=20`)
+      .get(`${API_SUB_URL.USER_FRIENDS}?/?page=1&pageSize=30`)
       .then((resp) => {
         setFollowing(resp.data.data);
       });
-    dispatch(setLoading(false));
+    dispatch(setFollowLoading(false));
   }, [dispatch]);
 
   interface StyledTabsProps {
@@ -146,7 +146,7 @@ const Profile = () => {
         </StyledTabs>
         <TabPanel value={value} index={0}>
           <div className="max-h-[800px] overflow-y-scroll">
-            {loading &&
+            {followLoading &&
               [...Array(VARIABLE.FOLLOW_COUNT)].map((e, i) => (
                 <div key={i} className="mb-4">
                   <FollowItemSkeleton />
@@ -161,7 +161,7 @@ const Profile = () => {
         </TabPanel>
         <TabPanel value={value} index={1}>
           <div className="max-h-[800px] overflow-y-scroll">
-            {loading &&
+            {followLoading &&
               [...Array(VARIABLE.FOLLOW_COUNT)].map((e, i) => (
                 <div key={i} className="mb-4">
                   <FollowItemSkeleton />
