@@ -6,6 +6,7 @@ export interface SearchState {
   resultNumber: number;
   resultList: [];
   loading: boolean;
+  followLoading: boolean;
   isSearched: boolean;
   currentPage: number;
 }
@@ -15,6 +16,7 @@ const initialState: SearchState = {
   resultNumber: 15,
   resultList: [],
   loading: false,
+  followLoading: false,
   isSearched: false,
   currentPage: 1,
 };
@@ -39,6 +41,10 @@ export const searchSlice = createSlice({
       ...state,
       loading: action.payload,
     }),
+    setFollowLoading: (state, action: PayloadAction<boolean>) => ({
+      ...state,
+      loading: action.payload,
+    }),
     setIsSearch: (state, action: PayloadAction<boolean>) => ({
       ...state,
       isSearched: action.payload,
@@ -58,6 +64,7 @@ export const {
   setLoading,
   setIsSearch,
   setCurrentPage,
+  setFollowLoading,
 } = searchSlice.actions;
 
 export default searchSlice.reducer;

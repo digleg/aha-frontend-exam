@@ -1,4 +1,5 @@
-import React from 'react';
+import { useState } from 'react';
+import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 
 interface FollowItemProps {
   data: {
@@ -11,12 +12,25 @@ interface FollowItemProps {
 
 const FollowItem = ({ data }: FollowItemProps) => {
   const { avater, name, username, isFollowing } = data;
+  const [imageBroken, setImageBroken] = useState<boolean>(false);
 
   return (
     <div className="flex h-[45px] justify-between">
       <div className="flex">
         <div className="h-10 w-10 rounded-[5px] border-[1px] border-solid border-[#F8F8F8] bg-gray-900">
-          <img src={avater} alt="ava" />
+          {imageBroken ? (
+            <div className="flex h-full items-center justify-center text-white">
+              <ImageNotSupportedIcon sx={{ fontSize: 16 }} />
+            </div>
+          ) : (
+            <img
+              src={avater}
+              alt="avater"
+              onError={() => {
+                setImageBroken(true);
+              }}
+            />
+          )}
         </div>
         <div className="ml-[15px]">
           <div className="text-base font-normal leading-6 tracking-[0.15px] text-white">
@@ -36,7 +50,6 @@ const FollowItem = ({ data }: FollowItemProps) => {
           }.svg`}
           alt="Logo"
         />
-        ;
       </div>
     </div>
   );
