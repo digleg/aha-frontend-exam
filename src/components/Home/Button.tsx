@@ -130,7 +130,9 @@ const Button = ({ type }: AhaButtonProps) => {
     <div>
       <div className="hidden xl:block">
         <SearchButton onClick={onClickFunctionDesktop} variant="contained">
-          <div className="">{type.toUpperCase()}</div>
+          <Typography sx={{ fontWeight: 'bold', fontSize: '14px' }}>
+            <div className="">{type.toUpperCase()}</div>
+          </Typography>
         </SearchButton>
       </div>
       <div className="block xl:hidden">
