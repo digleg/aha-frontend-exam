@@ -30,7 +30,7 @@ const SearchWrapper = () => {
         </div>
         <div className="xl:mt-[54px]">
           <div className="text-2xl font-normal leading-9">Search</div>
-          <div className="mt-5">
+          <div className="mt-[16px] xl:mt-[22px]">
             <Input />
           </div>
         </div>
@@ -52,15 +52,15 @@ const SearchWrapper = () => {
               results
             </div>
           </div>
-          <div className="mt-[4px] xl:mt-[34px]">
+          <div className="mt-[8px] xl:mt-[8px]">
             <Slider />
           </div>
-          <div className="mt-[221px] xl:mt-[30px]">
+          <div className="mt-[209px] xl:mt-[20px]">
             <Divider />
           </div>
         </div>
       </div>
-      <div className="mb-6 w-full xl:mb-[87px] xl:w-[343px]">
+      <div className="mb-6 w-full xl:mb-[89px] xl:w-[343px]">
         <Button type="search" />
       </div>
     </div>

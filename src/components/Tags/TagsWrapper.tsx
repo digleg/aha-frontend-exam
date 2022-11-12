@@ -48,7 +48,7 @@ const TagsWrapper = () => {
           </div>
         </div>
       </NavLink>
-      <div className="mt-5 text-2xl font-normal leading-[36px] tracking-normal text-white xl:mt-20 xl:text-3xl xl:leading-[45px] xl:tracking-[0.25px]">
+      <div className="mt-9 text-2xl font-normal leading-[36px] tracking-normal text-white xl:mt-20 xl:text-3xl xl:leading-[45px] xl:tracking-[0.25px]">
         Tags
       </div>
       <div className="mt-6 flex flex-wrap justify-between">

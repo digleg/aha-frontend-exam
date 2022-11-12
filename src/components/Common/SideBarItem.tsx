@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Badge, BadgeProps, IconButton } from '@mui/material';
+import { Badge, BadgeProps, IconButton, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import { setIsSearch, setResultList } from '../../redux/slices/homeSlice';
@@ -41,15 +41,25 @@ const SideBarItem = ({ title, path, active }: Props) => {
         <div className="flex xl:flex-col xl:items-center">
           <IconButton aria-label="SideBarItem">
             <img
-              width="24"
-              height="24"
+              width="19.76"
+              height="20.04"
               src={`/svgs/books_${active ? 'active' : 'inactive'}.svg`}
               alt="Logo"
             />
           </IconButton>
           {active && (
-            <div className="hidden text-xs leading-[18px] xl:block">
-              {title}
+            <div className="hidden xl:block">
+              <Typography
+                sx={{
+                  fontWeight: '300',
+                  fontSize: '12px',
+                  letterSpacing: '0.4px',
+                  fontFamily: 'Ubuntu',
+                  lineHeight: '6px',
+                }}
+              >
+                {title}
+              </Typography>
             </div>
           )}
         </div>

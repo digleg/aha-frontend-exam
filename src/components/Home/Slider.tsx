@@ -10,13 +10,13 @@ let resultNumberLocal: number;
 const ResultsSliderDesktop = styled(MuiSlider)<SliderProps>(() => ({
   '& .MuiSlider-rail': {
     color: '#5d5d5d !important',
-    height: '9px',
+    height: '8.5px',
     opacity: '1 !important',
   },
   '& .MuiSlider-track': {
     color: '#181818',
     backgroundImage: 'linear-gradient(270deg, #FFD25F 0.13%, #FF5C01 100%)',
-    height: '11px',
+    height: '10.5px',
   },
   '& .MuiSlider-thumb': {
     color: '#181818',

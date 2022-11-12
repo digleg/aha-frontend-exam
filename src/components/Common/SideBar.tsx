@@ -24,14 +24,14 @@ const SideBar = () => {
         <div className="mt-[37px] hidden xl:block">
           <Logo />
         </div>
-        <div className="mt-0 mr-[27px] xl:mr-0 xl:mt-[46px]">
+        <div className="mt-0 mr-[5.5%] xl:mr-0 xl:mt-[38px] xl:min-h-[44px]">
           <SideBarItem
             title="Home"
             path="Home"
             active={pathname.includes('/Home')}
           />
         </div>
-        <div className="mt-0 ml-[27px] xl:ml-0 xl:mt-[18px]">
+        <div className="mt-0 ml-[5.5%] xl:ml-0 xl:mt-[20px] xl:min-h-[50px]">
           <SideBarItem
             title="Tags"
             path="Tags"
