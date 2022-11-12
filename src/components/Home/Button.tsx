@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { Button as MuiButton, ButtonProps } from '@mui/material';
+import { Button as MuiButton, ButtonProps, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import { useAppSelector } from '../../hook/useAppRedux';
@@ -10,6 +10,10 @@ import {
   setResultList,
 } from '../../redux/slices/homeSlice';
 import axiosInstance, { API_SUB_URL } from '../../utils/axios/index';
+import {
+  calculateTrueValueDesktop,
+  calculateTrueValueMobile,
+} from '../../utils/calculateTrueValue';
 
 interface AhaButtonProps {
   type: string;
@@ -29,6 +33,9 @@ const SearchButton = styled(MuiButton)<ButtonProps>(() => ({
   '&:hover': {
     backgroundColor: '#FFFFFF',
   },
+  '& .MuiButtonBase-root': {
+    fontWeight: 700,
+  },
 }));
 
 const Button = ({ type }: AhaButtonProps) => {
@@ -42,16 +49,39 @@ const Button = ({ type }: AhaButtonProps) => {
    * * For the purpose of every button in this project
    * * @param: search {string} | more {string}
    */
-  let onClickFunction;
+  let onClickFunctionDesktop;
+  let onClickFunctionMobile;
+
   switch (type) {
     case 'search':
-      onClickFunction = function click() {
+      onClickFunctionDesktop = function click() {
         dispatch(setLoading(true));
         dispatch(setIsSearch(true));
         dispatch(setCurrentPage(1));
         axiosInstance
           .get(
-            `${API_SUB_URL.USER_ALL}?/page=1&pageSize=${resultNumber}&keyword=${keyword}`,
+            `${
+              API_SUB_URL.USER_ALL
+            }?/page=1&pageSize=${calculateTrueValueDesktop(
+              resultNumber,
+            )}&keyword=${keyword}`,
+          )
+          .then((resp) => {
+            dispatch(setResultList(resp.data.data));
+            dispatch(setLoading(false));
+          });
+      };
+      onClickFunctionMobile = function click() {
+        dispatch(setLoading(true));
+        dispatch(setIsSearch(true));
+        dispatch(setCurrentPage(1));
+        axiosInstance
+          .get(
+            `${
+              API_SUB_URL.USER_ALL
+            }?/page=1&pageSize=${calculateTrueValueMobile(
+              resultNumber,
+            )}&keyword=${keyword}`,
           )
           .then((resp) => {
             dispatch(setResultList(resp.data.data));
@@ -60,13 +90,30 @@ const Button = ({ type }: AhaButtonProps) => {
       };
       break;
     case 'more':
-      onClickFunction = function click() {
+      onClickFunctionDesktop = function click() {
         dispatch(setLoading(true));
         axiosInstance
           .get(
             `${API_SUB_URL.USER_ALL}?/page=${
               currentPage + 1
-            }&pageSize=${resultNumber}&keyword=${keyword}`,
+            }&pageSize=${calculateTrueValueDesktop(
+              resultNumber,
+            )}&keyword=${keyword}`,
+          )
+          .then((resp) => {
+            dispatch(setResultList(resultList.concat(...resp.data.data)));
+            dispatch(setLoading(false));
+          });
+      };
+      onClickFunctionMobile = function click() {
+        dispatch(setLoading(true));
+        axiosInstance
+          .get(
+            `${API_SUB_URL.USER_ALL}?/page=${
+              currentPage + 1
+            }&pageSize=${calculateTrueValueMobile(
+              resultNumber,
+            )}&keyword=${keyword}`,
           )
           .then((resp) => {
             dispatch(setResultList(resultList.concat(...resp.data.data)));
@@ -81,9 +128,18 @@ const Button = ({ type }: AhaButtonProps) => {
 
   return (
     <div>
-      <SearchButton onClick={onClickFunction} variant="contained">
-        {type.toUpperCase()}
-      </SearchButton>
+      <div className="hidden xl:block">
+        <SearchButton onClick={onClickFunctionDesktop} variant="contained">
+          <div className="">{type.toUpperCase()}</div>
+        </SearchButton>
+      </div>
+      <div className="block xl:hidden">
+        <SearchButton onClick={onClickFunctionMobile} variant="contained">
+          <Typography sx={{ fontWeight: 'bold', fontSize: '14px' }}>
+            {type.toUpperCase()}
+          </Typography>
+        </SearchButton>
+      </div>
     </div>
   );
 };

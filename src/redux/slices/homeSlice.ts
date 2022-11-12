@@ -5,7 +5,7 @@ import { SearchResultListProps, SearchState } from '../../interfaces/I_home';
 
 const initialState: SearchState = {
   keyword: '',
-  resultNumber: 15,
+  resultNumber: 2,
   resultList: [],
   followLoading: false,
   isSearched: false,

@@ -1,4 +1,8 @@
 /* eslint-disable react/no-array-index-key */
+/* *
+ * existed issue of mui tabs: https://github.com/mui/material-ui/issues/32749
+ */
+
 import React, { UIEvent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { styled, Tab, Tabs, Typography } from '@mui/material';

@@ -5,19 +5,24 @@ import { styled } from '@mui/material/styles';
 import { useAppSelector } from '../../hook/useAppRedux';
 import { setResultNumber } from '../../redux/slices/homeSlice';
 
-const ResultsSlider = styled(MuiSlider)<SliderProps>(() => ({
+let resultNumberLocal: number;
+
+const ResultsSliderDesktop = styled(MuiSlider)<SliderProps>(() => ({
   '& .MuiSlider-rail': {
-    color: '#5d5d5d',
+    color: '#5d5d5d !important',
+    height: '9px',
+    opacity: '1 !important',
   },
   '& .MuiSlider-track': {
     color: '#181818',
     backgroundImage: 'linear-gradient(270deg, #FFD25F 0.13%, #FF5C01 100%)',
+    height: '11px',
   },
   '& .MuiSlider-thumb': {
     color: '#181818',
-    width: '20px',
-    height: '20px',
-    border: '6px solid #FFD05D',
+    width: '28px',
+    height: '28px',
+    border: '7px solid #FFD05D',
   },
   '& .MuiSlider-thumb.Mui-focusVisible, .MuiSlider-thumb:hover': {
     color: '#181818',
@@ -36,10 +41,90 @@ const ResultsSlider = styled(MuiSlider)<SliderProps>(() => ({
     color: '#FFFFFF',
     opacity: '0.5',
     marginLeft: '2px',
+    marginTop: '2px',
+    '&[data-index="0"]': {
+      left: '0px !important',
+      marginLeft: '1%',
+      opacity: `${resultNumberLocal === 2 && 1} !important`,
+    },
+    '&[data-index="1"]': {
+      opacity: `${resultNumberLocal === 19.5 && 1} !important`,
+    },
+    '&[data-index="2"]': {
+      opacity: `${resultNumberLocal === 35.7 && 1} !important`,
+    },
+    '&[data-index="3"]': {
+      opacity: `${resultNumberLocal === 52.5 && 1} !important`,
+    },
+    '&[data-index="4"]': {
+      opacity: `${resultNumberLocal === 69 && 1} !important`,
+    },
+    '&[data-index="5"]': {
+      left: '0% !important',
+      marginLeft: '97.7%',
+      opacity: `${resultNumberLocal === 91 && 1} !important`,
+    },
   },
-  '& .MuiSlider-markLabelActive': {
+  height: 8,
+  color: '#5d5d5d',
+}));
+
+const ResultsSliderMobile = styled(MuiSlider)<SliderProps>(() => ({
+  '& .MuiSlider-rail': {
+    color: '#5d5d5d',
+    height: '9px',
+    opacity: '1 !important',
+  },
+  '& .MuiSlider-track': {
+    color: '#181818',
+    backgroundImage: 'linear-gradient(270deg, #FFD25F 0.13%, #FF5C01 100%)',
+    height: '11px',
+  },
+  '& .MuiSlider-thumb': {
+    color: '#181818',
+    width: '28px',
+    height: '28px',
+    border: '7px solid #FFD05D',
+  },
+  '& .MuiSlider-thumb.Mui-focusVisible, .MuiSlider-thumb:hover': {
+    color: '#181818',
+    boxShadow: 'none !important',
+  },
+  '& .MuiSlider-mark': {
+    display: 'none',
+  },
+  '& .MuiSlider-markLabel': {
+    fontFamily: 'Ubuntu',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontSize: '14px',
+    lineHeight: '150%',
+    letterSpacing: '0.25px',
     color: '#FFFFFF',
-    opacity: '1',
+    opacity: '0.5',
+    marginTop: '4px',
+    '&[data-index="0"]': {
+      left: '0px !important',
+      marginLeft: '3%',
+      opacity: `${resultNumberLocal === 2 && 1} !important`,
+    },
+    '&[data-index="1"]': {
+      opacity: `${resultNumberLocal === 19.5 && 1} !important`,
+    },
+    '&[data-index="2"]': {
+      opacity: `${resultNumberLocal === 35.7 && 1} !important`,
+    },
+    '&[data-index="3"]': {
+      opacity: `${resultNumberLocal === 52.5 && 1} !important`,
+    },
+    '&[data-index="4"]': {
+      opacity: `${resultNumberLocal === 69 && 1} !important`,
+    },
+    '&[data-index="5"]': {
+      left: '0% !important',
+      marginLeft: '95.5%',
+      opacity: `${resultNumberLocal === 91 && 1} !important`,
+    },
   },
   height: 8,
   color: '#5d5d5d',
@@ -49,29 +134,57 @@ const Slider = () => {
   const dispatch = useDispatch();
   const { resultNumber } = useAppSelector((state) => state.search);
 
-  const marks = [
+  resultNumberLocal = resultNumber;
+  const marksDesktop = [
     {
-      value: 3,
+      value: 2,
       label: '3',
     },
     {
-      value: 6,
+      value: 19.5,
       label: '6',
     },
     {
-      value: 9,
+      value: 35.7,
       label: '9',
     },
     {
-      value: 12,
+      value: 52.5,
       label: '12',
     },
     {
-      value: 15,
+      value: 69,
       label: '15',
     },
     {
-      value: 18,
+      value: 91,
+      label: '50',
+    },
+  ];
+
+  const marksMobile = [
+    {
+      value: 2,
+      label: '3',
+    },
+    {
+      value: 19.2,
+      label: '6',
+    },
+    {
+      value: 34,
+      label: '9',
+    },
+    {
+      value: 49.3,
+      label: '12',
+    },
+    {
+      value: 64.9,
+      label: '15',
+    },
+    {
+      value: 91,
       label: '50',
     },
   ];
@@ -80,27 +193,31 @@ const Slider = () => {
     event: Event,
     value: number | number[],
   ) => {
-    let correctValue;
-
-    // transfer 18 to 50 to correspond with the needs and the UI display
-    if (value === 18) {
-      correctValue = 50;
-    } else {
-      correctValue = value;
-    }
-    dispatch(setResultNumber(correctValue as number));
+    dispatch(setResultNumber(value as number));
   };
 
   return (
     <div>
-      <ResultsSlider
-        value={resultNumber}
-        step={null}
-        marks={marks}
-        min={3}
-        max={18}
-        onChange={handleResultsSliderChange}
-      />
+      <div className="hidden xl:block">
+        <ResultsSliderDesktop
+          value={resultNumber}
+          step={null}
+          marks={marksDesktop}
+          min={2}
+          max={92}
+          onChange={handleResultsSliderChange}
+        />
+      </div>
+      <div className="ml-[-6px] block w-[103%] xl:hidden">
+        <ResultsSliderMobile
+          value={resultNumber}
+          step={null}
+          marks={marksMobile}
+          min={2}
+          max={92}
+          onChange={handleResultsSliderChange}
+        />
+      </div>
     </div>
   );
 };

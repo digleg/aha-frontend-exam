@@ -15,33 +15,33 @@ const KeywordField = styled(TextField)({
     borderBottomColor: '#FF9B33',
   },
   '& .MuiOutlinedInput-root': {
+    height: '60px',
     '& fieldset': {
       border: '3px solid rgba(255, 255, 255, 0.5)',
+      borderRadius: '6px',
     },
     '&:hover fieldset': {
       border: '3px solid #FF9B33',
+      borderRadius: '6px',
     },
     '&.Mui-focused fieldset': {
       border: '3px solid #FF9B33',
+      borderRadius: '6px',
     },
     input: {
       '&::placeholder': {
-        fontFamily: 'Ubuntu',
         fontStyle: 'normal',
         fontWeight: '400',
         fontSize: '14px',
-        lineHeight: '150%',
         display: 'flex',
         alignItems: 'center',
         letterSpacing: '0.25px,',
         color: '#FFFFFF',
         opacity: 0.3,
       },
-      fontFamily: 'Ubuntu',
       fontStyle: 'normal',
       fontWeight: '400',
       fontSize: '14px',
-      lineHeight: '150%',
       display: 'flex',
       alignItems: 'center',
       letterSpacing: '0.25px',

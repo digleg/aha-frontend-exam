@@ -3,6 +3,10 @@ import { useDispatch } from 'react-redux';
 
 import { useAppSelector } from '../../hook/useAppRedux';
 import { setIsSearch, setResultList } from '../../redux/slices/homeSlice';
+import {
+  calculateTrueValueDesktop,
+  calculateTrueValueMobile,
+} from '../../utils/calculateTrueValue';
 import BackButton from '../Common/BackButton';
 import Logo from '../Common/Logo';
 
@@ -30,26 +34,28 @@ const SearchWrapper = () => {
             <Input />
           </div>
         </div>
-        <div className="mt-[30px]">
+        <div className="mt-[30px] hidden xl:block">
           <Divider />
         </div>
         <div>
-          <div className="mt-[30px] text-2xl font-normal leading-9">
+          <div className="mt-7 text-2xl font-normal leading-9 xl:mt-[30px]">
             # Of Results Per Page
           </div>
-          <div className="mt-5 flex items-end">
-            <div className="text-5xl font-bold ">
-              {/* Transfer 18 to 50 according to the needs */}
-              {resultNumber === 18 ? 50 : resultNumber}
+          <div className="mt-4 flex items-end xl:mt-5">
+            <div className="hidden text-5xl font-bold xl:block">
+              {calculateTrueValueDesktop(resultNumber)}
+            </div>
+            <div className="block text-5xl font-bold xl:hidden">
+              {calculateTrueValueMobile(resultNumber)}
             </div>
             <div className="ml-[10px] text-end text-base font-normal tracking-[0.15px]">
               results
             </div>
           </div>
-          <div className="mt-[34px] px-1">
+          <div className="mt-[4px] xl:mt-[34px]">
             <Slider />
           </div>
-          <div className="mt-[30px]">
+          <div className="mt-[221px] xl:mt-[30px]">
             <Divider />
           </div>
         </div>
@@ -85,11 +91,13 @@ const SearchWrapper = () => {
           <div className="mt-6 xl:flex xl:flex-wrap xl:justify-between">
             <Gallery />
             {loading &&
-              [...Array(resultNumber)].map((e, i) => (
-                <div key={i} className="mb-10 xl:mb-[31px]">
-                  <GalleryItemSkeleton />
-                </div>
-              ))}
+              [...Array(calculateTrueValueDesktop(resultNumber))].map(
+                (e, i) => (
+                  <div key={i} className="mb-10 xl:mb-[31px]">
+                    <GalleryItemSkeleton />
+                  </div>
+                ),
+              )}
           </div>
         </div>
       </div>
