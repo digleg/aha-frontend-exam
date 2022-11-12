@@ -203,8 +203,8 @@ const Slider = () => {
           value={resultNumber}
           step={null}
           marks={marksDesktop}
-          min={2}
-          max={92}
+          min={1}
+          max={93}
           onChange={handleResultsSliderChange}
         />
       </div>
@@ -213,8 +213,8 @@ const Slider = () => {
           value={resultNumber}
           step={null}
           marks={marksMobile}
-          min={2}
-          max={92}
+          min={-1}
+          max={95}
           onChange={handleResultsSliderChange}
         />
       </div>
