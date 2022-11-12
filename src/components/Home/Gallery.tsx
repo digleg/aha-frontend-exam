@@ -6,6 +6,11 @@ import GalleryItem from './GalleryItem';
 
 const Gallery = () => {
   const { resultList } = useAppSelector((state) => state.search);
+  const resultListLength = resultList.length;
+
+  // for the dummy block if the response data can't be fully divided
+  const alignResultCountDesktop = resultListLength % 3;
+
   return (
     <>
       {resultList.map(
@@ -17,6 +22,14 @@ const Gallery = () => {
             <GalleryItem data={galleryItemData} />
           </div>
         ),
+      )}
+      {/* This is the hidden block for the alignment if the tags item aren't divisible by 3 */}
+      {Boolean(alignResultCountDesktop !== 0) && (
+        <div className="hidden xl:block">
+          {[...Array(alignResultCountDesktop)].map((e, i) => (
+            <div key={i} className="mb-10 w-[219px]" />
+          ))}
+        </div>
       )}
     </>
   );
