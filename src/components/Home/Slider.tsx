@@ -208,7 +208,7 @@ const Slider = () => {
           onChange={handleResultsSliderChange}
         />
       </div>
-      <div className="ml-[-6px] block w-[103%] xl:hidden">
+      <div className="ml-[-6px] block w-[100%] xl:hidden">
         <ResultsSliderMobile
           value={resultNumber}
           step={null}
