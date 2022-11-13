@@ -11,6 +11,12 @@
 
 - font family support: Ubuntu@700,500,400,300; Open_Sans@600
 
+## Command
+
+- npm install && npm run start;
+
+- font family support: Ubuntu@700,500,400,300; Open_Sans@600
+
 ## Commit Rules
 
 Git Commit style guide, shall refer to [commitlint](https://commitlint.js.org/#/)
@@ -43,6 +49,13 @@ width: 1440px height: auto
 src
     components
         Common
+            BackButton.tsx
+            ContentWrapper.tsx
+            // main wrapper for sidebar & router
+
+            Logo.tsx
+            // size: 35*15
+
             SideBar.tsx
             // not show width less then 1440px
             // desktop: height 100%; display: flex; width: 80px;
@@ -52,51 +65,56 @@ src
             // with badge
             // able to hide & highlights words
 
-            Logo.tsx
-            // size: 35*15
-
-            BackButton.tsx
         Home
-            SearchWrapper.tsx
-            // margin 130px
-
-            Input.tsx
-            // width: 100%
-
-            Slider.tsx
-            // width: 100%
-
             Button.tsx
             // variable: normal, outlined, contained
             // Following: 76*28
             // Follow: 60*29
             // Animation: hover
 
+            Divider.tsx
+            FollowItem.tsx
+            FollowItemSkeleton.tsx
+
+            FollowItem.tsx
+            // margin-bottom: 21px;
+            // justify-content: space-between
+            // infinite scroll
+
+            FollowItemSkeleton.tsx
+            Button.tsx
+            // variable: outlined & contained
+
             Gallery.tsx
             // infinite scroll
             GalleryItem.tsx
-            Skeleton.tsx
+            GalleryItemSkeleton.tsx
+
+            Input.tsx
+            // width: 100%
 
             Profile.tsx
             // Tab - width: 375, height: 100%
             // no margin
 
-            Follow.tsx
-            // margin-left / margin-right: 16px;
+            SearchWrapper.tsx
+            // margin 130px
 
-            FollowItem.tsx
-            // margin-bottom: 21px;
-            // justify-content: space-between
-            Button.tsx
-            // variable: outlined & contained
+            Slider.tsx
+            // width: 100%
+
         Tags
-            TagsWrapper.tsx
             TagsItem.tsx
-
+            TagsItemSkeleton.tsx
+            TagsWrapper.tsx
     fonts
+    hook
+        useAppRedux.ts
+        // for the use-related function's typescript needs
     interfaces
+        I_home.ts
+        I_tags.ts
     pages
-
         Home.tsx
         // includes: SearchWrapper, Tabs
         // SearchWrapper with min-width & center
@@ -106,6 +124,10 @@ src
         // Add Logo when screen width < 1440px
     redux
         slices
+            commonSlice.ts
+            // for the general used state
+            homeSlice.ts
+            // for the state in home page
         store.ts
     styles
     App.tsx
@@ -113,12 +135,4 @@ src
     // Hide Logo when screen width < 1440px
 
     index.tsx
-```
-
-# Redux Data Structure
-
-```
-
-
-
 ```
