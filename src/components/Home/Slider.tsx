@@ -1,9 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Slider as MuiSlider, SliderProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import { useAppSelector } from '../../hook/useAppRedux';
 import { setResultNumber } from '../../redux/slices/homeSlice';
+import {
+  transferDesktopToMobile,
+  transferMobileToDesktop,
+} from '../../utils/calculateTrueValue';
 
 let resultNumberLocal: number;
 
@@ -132,9 +138,26 @@ const ResultsSliderMobile = styled(MuiSlider)<SliderProps>(() => ({
 
 const Slider = () => {
   const dispatch = useDispatch();
-  const { resultNumber } = useAppSelector((state) => state.search);
+  const { resultNumber, isSearched } = useAppSelector((state) => state.search);
+
+  useEffect(() => {
+    if (window.innerWidth >= 1440) {
+      const transferredNumber = transferMobileToDesktop(resultNumberLocal);
+
+      dispatch(setResultNumber(transferredNumber));
+    } else {
+      const transferredNumber = transferDesktopToMobile(resultNumberLocal);
+      dispatch(setResultNumber(transferredNumber));
+    }
+  }, [isSearched, dispatch]);
 
   resultNumberLocal = resultNumber;
+
+  /**
+   * * Description: 'for the customized needs of the slider's 'mark label' we need to use'
+   * * and use the specific value to represent the proportion of the 'mark label'
+   */
+
   const marksDesktop = [
     {
       value: 2,
@@ -195,6 +218,30 @@ const Slider = () => {
   ) => {
     dispatch(setResultNumber(value as number));
   };
+
+  const [screenSize, getDimension] = useState({
+    dynamicWidth: window.innerWidth,
+  });
+  const setDimension = () => {
+    if (window.innerWidth >= 1440) {
+      const transferredNumber = transferMobileToDesktop(resultNumberLocal);
+      dispatch(setResultNumber(transferredNumber));
+    } else {
+      const transferredNumber = transferDesktopToMobile(resultNumberLocal);
+      dispatch(setResultNumber(transferredNumber));
+    }
+    getDimension({
+      dynamicWidth: window.innerWidth,
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', setDimension);
+
+    return () => {
+      window.removeEventListener('resize', setDimension);
+    };
+  }, [screenSize]);
 
   return (
     <div>

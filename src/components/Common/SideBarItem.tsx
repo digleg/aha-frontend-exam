@@ -21,10 +21,13 @@ const SideBarItem = ({ title, path, active }: Props) => {
       top: 6,
       backgroundColor: '#00D1FF',
       display: 'none',
+      minWidth: '5px',
+      height: '5px',
+      // display: path === 'home' ? 'block' : 'none',
     },
     '@media screen and (min-width: 1440px)': {
       '& .MuiBadge-badge': {
-        display: !active ? 'block' : 'none',
+        display: path === 'Home' ? 'none' : active ? 'none' : 'block',
       },
     },
   }));
@@ -48,8 +51,9 @@ const SideBarItem = ({ title, path, active }: Props) => {
             />
           </IconButton>
           {active && (
-            <div className="hidden xl:block">
+            <div className="hidden leading-[0px] xl:block">
               <Typography
+                component="span"
                 sx={{
                   fontWeight: '300',
                   fontSize: '12px',

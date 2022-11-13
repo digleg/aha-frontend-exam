@@ -1,14 +1,17 @@
 import { useLocation } from 'react-router-dom';
 
+import { useAppSelector } from '../../hook/useAppRedux';
+
 import Logo from './Logo';
 import SideBarItem from './SideBarItem';
 
 const SideBar = () => {
   const { pathname } = useLocation();
+  const { isSearched } = useAppSelector((state) => state.search);
 
   // className for hidden navbar
   let classNameForNavBar;
-  if (pathname.includes('/Tags')) {
+  if (pathname.includes('/Tags') || isSearched) {
     // Show: tag & desktop, Hidden: tag & mobile
     classNameForNavBar =
       'fixed bottom-0 z-10 h-[66px] w-screen bg-bg-c1B1B1B xl:static xl:bottom-auto xl:z-auto xl:h-auto xl:w-20 hidden xl:block';

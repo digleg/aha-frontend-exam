@@ -40,14 +40,14 @@ const TagsWrapper = () => {
 
   return (
     <div className="flex min-h-[calc(100vh-66px)] w-full flex-col bg-bg-c181818 px-[25px] xl:min-h-screen xl:w-[calc(100vw-80px)] xl:px-[258px]">
-      <NavLink to="/Home">
-        <div className="ml-[-5px] mt-[17px] flex items-center xl:ml-[-40px] xl:mt-[92px] xl:hidden">
+      <div className="ml-[-5px] mt-[17px] flex items-center xl:ml-[-40px] xl:mt-[92px] xl:hidden">
+        <NavLink to="/Home">
           <BackButton />
-          <div className="ml-[19.88px] block text-2xl font-normal leading-9 text-white xl:hidden">
-            Home Page
-          </div>
+        </NavLink>
+        <div className="ml-[19.88px] block text-2xl font-normal leading-9 text-white xl:hidden">
+          Home Page
         </div>
-      </NavLink>
+      </div>
       <div className="mt-9 text-2xl font-normal leading-[36px] tracking-normal text-white xl:mt-20 xl:text-3xl xl:leading-[45px] xl:tracking-[0.25px]">
         Tags
       </div>

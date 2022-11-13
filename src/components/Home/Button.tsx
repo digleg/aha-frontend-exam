@@ -31,7 +31,10 @@ const SearchButton = styled(MuiButton)<ButtonProps>(() => ({
   backgroundColor: '#FFFFFF',
   borderRadius: '4px',
   '&:hover': {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#121212',
+    color: '#FFFFFF',
+    border: '1px solid #FFFFFF',
+    borderRadius: '4px',
   },
   '& .MuiButtonBase-root': {
     fontWeight: 700,
@@ -130,14 +133,20 @@ const Button = ({ type }: AhaButtonProps) => {
     <div>
       <div className="hidden xl:block">
         <SearchButton onClick={onClickFunctionDesktop} variant="contained">
-          <Typography sx={{ fontWeight: 'bold', fontSize: '14px' }}>
+          <Typography
+            sx={{ fontWeight: 'bold', fontSize: '14px' }}
+            component="span"
+          >
             <div className="">{type.toUpperCase()}</div>
           </Typography>
         </SearchButton>
       </div>
       <div className="block xl:hidden">
         <SearchButton onClick={onClickFunctionMobile} variant="contained">
-          <Typography sx={{ fontWeight: 'bold', fontSize: '14px' }}>
+          <Typography
+            sx={{ fontWeight: 'bold', fontSize: '14px' }}
+            component="span"
+          >
             {type.toUpperCase()}
           </Typography>
         </SearchButton>

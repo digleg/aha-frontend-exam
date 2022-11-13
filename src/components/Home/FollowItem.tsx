@@ -13,6 +13,13 @@ interface FollowItemProps {
 const FollowItem = ({ data }: FollowItemProps) => {
   const { avater, name, username, isFollowing } = data;
   const [imageBroken, setImageBroken] = useState<boolean>(false);
+  const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
+  const imgMouseOverFunc = () => {
+    setIsMouseOver(true);
+  };
+  const imgMouseLeaveFunc = () => {
+    setIsMouseOver(false);
+  };
 
   return (
     <div className="flex h-[45px] justify-between">
@@ -41,15 +48,31 @@ const FollowItem = ({ data }: FollowItemProps) => {
           </div>
         </div>
       </div>
-      <div>
-        <img
-          width={isFollowing ? 76 : 60}
-          height={isFollowing ? 28 : 29}
-          src={`/svgs/${
-            isFollowing ? 'following_button' : 'follow_button'
-          }.svg`}
-          alt="Logo"
-        />
+      <div
+        className="flex h-[29px] w-[76px] cursor-pointer justify-end"
+        onMouseOver={imgMouseOverFunc}
+        onFocus={() => {}}
+        onMouseLeave={imgMouseLeaveFunc}
+      >
+        {isMouseOver ? (
+          <img
+            width={isFollowing ? 60 : 76}
+            height={isFollowing ? 29 : 28}
+            src={`/svgs/${
+              isFollowing ? 'follow_button' : 'following_button'
+            }.svg`}
+            alt="Logo"
+          />
+        ) : (
+          <img
+            width={isFollowing ? 76 : 60}
+            height={isFollowing ? 28 : 29}
+            src={`/svgs/${
+              isFollowing ? 'following_button' : 'follow_button'
+            }.svg`}
+            alt="Logo"
+          />
+        )}
       </div>
     </div>
   );

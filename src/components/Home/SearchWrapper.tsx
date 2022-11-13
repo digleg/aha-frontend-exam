@@ -65,28 +65,28 @@ const SearchWrapper = () => {
       </div>
     </div>
   ) : (
-    <div className="flex min-h-[calc(100vh-66px)] w-full flex-col justify-between bg-bg-c181818 px-[20px] xl:min-h-screen xl:w-[calc(100vw-80px)] xl:px-[130px]">
+    <div className="flex min-h-[100vh] w-full flex-col justify-between bg-bg-c181818 px-[20px] xl:min-h-screen xl:w-[calc(100vw-80px)] xl:px-[130px]">
       <div>
-        <button
-          type="button"
-          onClick={() => {
-            dispatch(setIsSearch(false));
-            dispatch(setResultList([]));
-          }}
-        >
-          <div className="ml-[0px] mt-[17px] flex items-center xl:ml-[-40px] xl:mt-[92px]">
+        <div className="ml-[0px] mt-[17px] flex items-center xl:ml-[-40px] xl:mt-[92px]">
+          <button
+            type="button"
+            onClick={() => {
+              dispatch(setIsSearch(false));
+              dispatch(setResultList([]));
+            }}
+          >
             <BackButton />
-            <div className="hidden text-white xl:ml-[20px] xl:block xl:text-3xl xl:leading-[45px]">
-              Results
-            </div>
-            <div className="ml-[19.88px] block text-2xl font-normal leading-9 text-white xl:hidden">
-              Home Page
-            </div>
-          </div>
-          <div className="ml-1 mt-[37px] flex text-2xl font-normal leading-9 text-white xl:hidden">
+          </button>
+          <div className="hidden text-white xl:ml-[20px] xl:block xl:text-3xl xl:leading-[45px]">
             Results
           </div>
-        </button>
+          <div className="ml-[19.88px] block text-2xl font-normal leading-9 text-white xl:hidden">
+            Home Page
+          </div>
+        </div>
+        <div className="ml-1 mt-[37px] flex text-2xl font-normal leading-9 text-white xl:hidden">
+          Results
+        </div>
         <div>
           <div className="mt-6 xl:flex xl:flex-wrap xl:justify-between">
             <Gallery />
