@@ -183,8 +183,9 @@ const Profile = () => {
         </StyledTabs>
         <TabPanel value={value} index={0}>
           <div
-            className="max-h-[800px] overflow-y-scroll"
+            className="overflow-y-scroll"
             onScroll={handleFollowerScroll}
+            style={{ maxHeight: 'calc(100vh - 100px)' }}
           >
             {followLoading &&
               [...Array(VARIABLE.FOLLOW_COUNT)].map((e, i) => (
@@ -201,8 +202,9 @@ const Profile = () => {
         </TabPanel>
         <TabPanel value={value} index={1}>
           <div
-            className="max-h-[800px] overflow-y-scroll"
+            className="overflow-y-scroll"
             onScroll={handleFollowingScroll}
+            style={{ maxHeight: 'calc(100vh - 100px)' }}
           >
             {followLoading &&
               [...Array(VARIABLE.FOLLOW_COUNT)].map((e, i) => (
