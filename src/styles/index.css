@@ -62,7 +62,7 @@ td {
   font-weight: inherit;
   font-style: inherit;
   font-size: 100%;
-  font-family: inherit;
+  font-family: Ubuntu !important;
   vertical-align: baseline;
   overflow: -moz-hidden-unscrollable;
 }
@@ -124,22 +124,30 @@ html,
 body,
 #root {
   height: 100%;
+  font-family: Ubuntu !important;
 }
 
 @font-face {
   font-family: 'Ubuntu-Bold';
   src: local('Ubuntu-Bold'),
     url(../fonts/Ubuntu/Ubuntu-Bold.ttf) format('truetype');
+}
+@font-face {
   font-family: 'Ubuntu-Light';
   src: local('Ubuntu-Light'),
     url(../fonts/Ubuntu/Ubuntu-Light.ttf) format('truetype');
+}
+@font-face {
   font-family: 'Ubuntu-Medium';
   src: local('Ubuntu-Medium'),
     url(../fonts/Ubuntu/Ubuntu-Medium.ttf) format('truetype');
+}
+@font-face {
   font-family: 'Ubuntu-Regular';
   src: local('Ubuntu-Regular'),
-    url(../fonts/Ubuntu/Ubuntu-Regular.ttf)
-      url(../fonts/Ubuntu/Ubuntu-Regular.ttf) format('truetype');
+    url(../fonts/Ubuntu/Ubuntu-Regular.ttf) format('truetype');
+}
+@font-face {
   font-family: 'Open Sans';
   src: local('Open_Sans', sans-serif),
     url(../fonts/Open_Sans/OpenSans-VariableFont_wdth.ttf) format('truetype');
